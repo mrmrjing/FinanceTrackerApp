@@ -1,6 +1,9 @@
 const express = require('express')
 const cors = require('cors')
+const { db } = require('./db/db')
 const app = express()
+// const {db} = require('backend/db/db.js')
+
 
 require('dotenv').config()
 
@@ -15,6 +18,8 @@ app.get('/', (req, res) => {
 
 // Creating a basic server 
 const server = () => {
+    // Connecting to MongoDB
+    db()
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`)
     })
