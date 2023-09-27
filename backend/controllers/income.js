@@ -21,7 +21,6 @@ exports.addIncome = async (req, res) => {
                 return res.status(400).json({ message: 'Please enter a valid amount' })
             }
             await newIncome.save() // save the new income to the database
-            console.log(newInincome)
             res.status(200).json({ message: 'Income added successfully' })
         } catch (error) {
             return res.status(500).json({ message: "Server Error" });
@@ -39,7 +38,6 @@ exports.getIncome = async (req, res) => {
 
 exports.deleteIncome = async (req, res) => {
     const { id } = req.params;
-    console.log(params);
     IncomeSchema.findByIdAndDelete(id).then((income) => {
         res.status(200).json({ message: 'Income deleted successfully' })
     })
