@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const { db } = require('./db/db')
+const {readdirSync} = require('fs') //file system module: read information in a specified directory
 const app = express()
 // const {db} = require('backend/db/db.js')
 
@@ -12,9 +13,11 @@ const PORT = process.env.PORT
 // middlewares  
 app.use(cors())
 app.use(express.json())
-app.get('/', (req, res) => {
-    res.send('Hello World')
-})
+
+// routes
+readdirSync('./routes').map((route) => app.use('/api/v1', require('./routes/' + route)))
+
+
 
 // Creating a basic server 
 const server = () => {
